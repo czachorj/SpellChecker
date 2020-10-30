@@ -1,10 +1,24 @@
+import java.util.Scanner;
+import java.io.*;
 
 public class WordRecommender {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	// read from dictionary file
 
-		System.out.println("testing if this commit works");
+	String[] readFile(){
+		File dictionary = new File ("engDictionary.txt");
+
+		try {
+			Scanner scnr = new Scanner(dictionary);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
 	}
+
+
+
 
 }
