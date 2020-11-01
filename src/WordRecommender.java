@@ -4,6 +4,11 @@ import java.io.*;
 
 public class WordRecommender {
 
+	String fileName; //creating instance variable
+	WordRecommender(String fileName){
+		this.fileName = fileName;
+	}
+
 
 	ArrayList<String> engDict = new ArrayList<>();  //creating an arraylist for the dictionary words
 
@@ -13,7 +18,7 @@ public class WordRecommender {
 
 	// read from dictionary file
 	String[] readDict(){
-		File dictionary = new File ("engDictionary.txt");
+		File dictionary = new File (fileName);
 
 		try {
 			Scanner scnr = new Scanner(dictionary);
@@ -85,7 +90,7 @@ public class WordRecommender {
 				if(word1.charAt(i) == word2.charAt(i)) {
 					++rightSimilarity;
 				}
-		}
+			}
 		}
 		else if(word2.length() < word1.length()) {
 
@@ -98,14 +103,27 @@ public class WordRecommender {
 				if(word2.charAt(i) == word1.charAt(i)) {
 					++rightSimilarity;
 				}
+			}
 		}
+
+		similarity = (leftSimilarity + rightSimilarity)/2.0; //calculating similarity score
+
+		return similarity;
+
 	}
+	/**
+	 * print out arraylist of suggested words
+	 * @param list
+	 * @return
+	 */
 
-	similarity = (leftSimilarity + rightSimilarity)/2.0; //calculating similarity score
+	public String prettyPrint (ArrayList<String> list) {
+		for(int i =0; i<list.size(); i++) {
+			System.out.print(i+"."+list.get(i));
+		}
+		return null;
 
-	return similarity;
-
-}
+	}
 
 
 }
