@@ -9,11 +9,8 @@ public class WordRecommender {
 		this.fileName = fileName;
 	}
 
-
 	ArrayList<String> engDict = new ArrayList<>();  //creating an arraylist for the dictionary words
-
 	ArrayList<String> testFile = new ArrayList<>();  //creating an arraylist for the paragraph to be tested 
-
 	ArrayList<String> typos = new ArrayList<>(); //creating typos arraylist
 
 	// read from dictionary file
@@ -72,11 +69,13 @@ public class WordRecommender {
 
 
 		/**
-		 * leftSimilarity
+		 * 
 		 * using the length of the shortest word, 
-		 * going from left to right
+		 * going from left to right 
+		 * and then from right to left
 		 * compare each character at each index 
 		 * to the character at the same index of the other word
+		 * add to the relevant counter
 		 */
 
 		if(word1.length() < word2.length()) { 
@@ -105,9 +104,7 @@ public class WordRecommender {
 				}
 			}
 		}
-
 		similarity = (leftSimilarity + rightSimilarity)/2.0; //calculating similarity score
-
 		return similarity;
 
 	}
