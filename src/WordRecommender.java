@@ -4,11 +4,17 @@ import java.io.*;
 
 public class WordRecommender {
 
-	// read from dictionary file
 
+	ArrayList<String> engDict = new ArrayList<>();  //creating an arraylist for the dictionary words
+
+	ArrayList<String> testFile = new ArrayList<>();  //creating an arraylist for the paragraph to be tested 
+
+	ArrayList<String> typos = new ArrayList<>(); //creating typos arraylist
+
+	// read from dictionary file
 	String[] readDict(){
 		File dictionary = new File ("engDictionary.txt");
-		ArrayList<String> engDict = new ArrayList<>(); //creating an arraylist for the dictionary words
+
 		try {
 			Scanner scnr = new Scanner(dictionary);
 			while (scnr.hasNext()) {
@@ -23,11 +29,11 @@ public class WordRecommender {
 
 	}
 
-	
-	//read test file to spellcheck
+
+	//read from test file to spellcheck
 	String[] readFile(){
 		File dictionary = new File ("filetotest.txt");
-		ArrayList<String> testFile = new ArrayList<>(); //creating an arraylist for the paragraph to be tested 
+
 		try {
 			Scanner scnr = new Scanner(dictionary);
 			while (scnr.hasNext()) {
@@ -42,7 +48,18 @@ public class WordRecommender {
 
 	}
 
-	String []
-	
+	//adding words that don't exist in the dictionary into the typos arraylist
+	ArrayList<String> getTypos () {
+		for (int i=0; i<testFile.size(); i++) { //looping through text file and comparing against the dictionary file
+			if	(!engDict.contains(testFile.get(i))){
+				typos.add(testFile.get(i));
+			}
+		}
+
+		return typos;
+	}
+
+
+
 
 }
