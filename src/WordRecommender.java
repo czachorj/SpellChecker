@@ -4,7 +4,9 @@ import java.io.*;
 
 public class WordRecommender {
 
-	String fileName; //creating instance variable
+	String fileName; //creating instance variable for dictionary
+	String textFileName; //creating instance variable for textFile
+	
 	WordRecommender(String fileName){
 		this.fileName = fileName;
 	}
@@ -34,10 +36,10 @@ public class WordRecommender {
 
 	//read from test file to spellcheck
 	String[] readFile(){
-		File dictionary = new File ("filetotest.txt");
+		File textFile = new File (textFileName);
 
 		try {
-			Scanner scnr = new Scanner(dictionary);
+			Scanner scnr = new Scanner(textFile);
 			while (scnr.hasNext()) {
 				testFile.add(scnr.next());
 			}
