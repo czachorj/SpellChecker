@@ -59,7 +59,43 @@ public class WordRecommender {
 		return typos;
 	}
 
+	public double getSimilarity (String word1, String word2) {
 
+		int leftSimilarity = 0; // number of letters that match between word1 and word two as we go from left to right
+		int rightSimilarity = 0; // number of letters that match between word1 and word two as we go from right to left
+		double similarity = 0; //similarity score we want returned
+
+		for (int i=0; i<typos.size(); i++) { //loop through all words in typos list
+
+			/**
+			 * leftSimilarity
+			 * using the length of the shortest word, 
+			 * compare each character at each index 
+			 * to the character at the same index of the other word
+			 */
+			
+			if(word1.length() < word2.length()) { 
+
+				for(int j=0; j<word1.length(); j++) {
+					if (word1.charAt(j) == word2.charAt(j)) {
+						++leftSimilarity;
+					}
+				}
+			}
+			else if(word2.length() < word1.length()) {
+
+				for(int j=0; j<word2.length(); j++) {
+					if (word2.charAt(j) == word1.charAt(j)) {
+						++leftSimilarity;
+					}
+				}
+			}
+		}
+		similarity = (leftSimilarity + rightSimilarity)/2.0; //calculating similarity score
+
+		return similarity;
+
+	}
 
 
 }
