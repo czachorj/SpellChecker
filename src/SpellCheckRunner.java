@@ -10,7 +10,9 @@ public class SpellCheckRunner {
 
 		test.getTypos(); //get Typos for test case
 
+	
 		for(int i=0; i<test.getTypos().size(); i++) {
+			//if(wordSuggestions>0) {
 			System.out.println("The word " + test.getTypos().get(i) + " is mispelled");
 			System.out.println("The following suggestions are available:");
 
@@ -27,11 +29,21 @@ public class SpellCheckRunner {
 				//need to write code to replace words in the output file
 			}
 			
-			if(userInput == "r") { //if the user selects t, ask them to type in the word they want to use
+			if(userInput == "t") { //if the user selects t, ask them to type in the word they want to use
 				System.out.println("Please type the word that will be used as the replacement in the output file");
 				//need to write code to replace words in the output file
 			}
 
 		}
-	}
+//		else {
+//			System.out.println("The word " + test.getTypos().get(i) + " is mispelled");
+//			System.out.println("There are 0 suggestions in our dictionary for this word");	
+//			System.out.println("Press 'a' for accept as is, or 't' for type in manually");	
+//		if(userInput == "t") { //if the user selects t, ask them to type in the word they want to use
+//			System.out.println("Please type the word that will be used as the replacement in the output file");
+//			//need to write code to replace words in the output file
+		}
+
+		//}
+		}
 }
