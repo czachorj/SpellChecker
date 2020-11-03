@@ -68,50 +68,65 @@ public class WordRecommender {
 	}
 
 	
-	
 	public double getSimilarity (String word1, String word2) {
 
 		int leftSimilarity = 0; // number of letters that match between word1 and word2 as we go from left to right
 		int rightSimilarity = 0; // number of letters that match between word1 and word2 as we go from right to left
 		double similarity = 0; //similarity score we want returned
+		int word1LastIndex = word1.length()-1;     // variable to track the reverse looping through word1
+		int word2LastIndex = word2.length()-1;     // variable to track the reverse looping through word2
+		int runningCounter1 = word1.length();      // variable to track for how long to loop for
+		int runningCounter2 = word2.length();      // variable to track for how long to loop for
 
-
-		/**
-		 * 
-		 * using the length of the shortest word, 
-		 * going from left to right 
-		 * and then from right to left
-		 * compare each character at each index 
-		 * to the character at the same index of the other word
-		 * add to the relevant counter
-		 */
-
+		// using the length of the shortest word, from left to right, compare each char at each index to the char at the same index of the other word, add to counter
 		if(word1.length() < word2.length()) { 
-
 			for(int j=0; j<word1.length(); j++) {
 				if (word1.charAt(j) == word2.charAt(j)) {
 					++leftSimilarity;
 				}
 			}
-			for (int i=word1.length(); i>0; i--) {
-				if(word1.charAt(i) == word2.charAt(i)) {
+			// only loop a total of the shortest word's length time and compare the last index of each word to the other, decrement indexes
+			while (runningCounter1 > 0) {
+				if(word2.charAt(word2LastIndex) == word1.charAt(word1LastIndex)) {
 					++rightSimilarity;
 				}
+				--word1LastIndex;
+				--word2LastIndex;
+				--runningCounter1;
 			}
-		}
-		else if(word2.length() < word1.length()) {
-
+			
+			
+		} else if(word2.length() < word1.length()) {
 			for(int j=0; j<word2.length(); j++) {
 				if (word2.charAt(j) == word1.charAt(j)) {
 					++leftSimilarity;
 				}
 			}
-			for (int i=word2.length(); i>0; i--) {
-				if(word2.charAt(i) == word1.charAt(i)) {
+			while (runningCounter2 > 0) {
+				if(word2.charAt(word2LastIndex) == word1.charAt(word1LastIndex)) {
 					++rightSimilarity;
 				}
+				--word1LastIndex;
+				--word2LastIndex;
+				--runningCounter2;
+			}
+			
+		} else { // if word1 and word2 are equal in length
+			for(int j=0; j<word2.length(); j++) {
+				if (word2.charAt(j) == word1.charAt(j)) {
+					++leftSimilarity;
+				}
+			}
+			while (runningCounter2 > 0) {
+				if(word2.charAt(word2LastIndex) == word1.charAt(word1LastIndex)) {
+					++rightSimilarity;
+				}
+				--word1LastIndex;
+				--word2LastIndex;
+				--runningCounter2;
 			}
 		}
+		
 		similarity = (leftSimilarity + rightSimilarity)/2.0; //calculating similarity score
 		System.out.println(similarity);
 		return similarity;
