@@ -8,7 +8,7 @@ public class WordRecommenderTest {
 			wr.readFile();
 			wr.getTypos();
 			wr.getSimilarity("oblige","oblige");
-			wr.getWordSuggestions("rooom", 3, 0.75, 5);
 			wr.getCommonPercent("gardener", "nerdier");
+			wr.getWordSuggestions("testing", 1, .5, 5);
 	}
 }

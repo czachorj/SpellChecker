@@ -138,7 +138,6 @@ public class WordRecommender {
 	public double getCommonPercent(String word1, String word2) {
 		
 		// S1 = the set of letters in w1 &&  S2 = the set of letters in w1
-		// w1 - committee. Then S1 = {c, o, m, i, t, e}
 		List<Character> S1 = new ArrayList<Character>();		
 		List<Character> S2 = new ArrayList<Character>();
 		List<Character> numerator = new ArrayList<Character>();		
@@ -189,7 +188,11 @@ public class WordRecommender {
 		return fraction;
 	}
 	
-	
+	// TODO: filter all the dictionary words into new array
+	// step 1: candidate word length is word length +/- tolerance characters
+	// step 2: array next only contains words with commonPercent in common
+	// step 3: use similarity metric on every remaining word
+	// step 4: return topN of the words (if there are fewer, return all)
 	
 	/**
 	 * print out arraylist of suggested words
@@ -199,6 +202,32 @@ public class WordRecommender {
 	
 	
 	public ArrayList<String> getWordSuggestions(String word, int tolerance, double commonPercent, int topN) {
+
+		// step 1: filter based on word length +/0 tolerance characters
+		List<String> wordLengthFiltered = new ArrayList<String>();
+		List<String> commonPercentFiltered = new ArrayList<String>();
+		int wordLength = word.length();
+		int wordLengthLower = word.length()-tolerance;
+		int wordLengthUpper = word.length()+tolerance;
+		
+		// if the word is between lower and upper bounds, add to wordLengthFiltered
+		for(int f=0; f<engDict.size(); f++) {
+			int suggestionLength = engDict.get(f).length();
+			if((suggestionLength >= wordLengthLower) && (suggestionLength <= wordLengthUpper)){
+				wordLengthFiltered.add(engDict.get(f));
+			}
+		}
+		System.out.println(wordLengthFiltered.size());		
+
+		// step 2: next, filter so it only contains words with commonPercent in common
+		for(int e=0; e<wordLengthFiltered.size(); e++) {
+			double commonPercentReturn = getCommonPercent(word, wordLengthFiltered.get(e));
+			if(commonPercentReturn >= commonPercent ) {
+				commonPercentFiltered.add(engDict.get(e));
+			}
+		}
+		System.out.println(commonPercentFiltered.size());	
+		
 		return engDict;
 	}
 	
