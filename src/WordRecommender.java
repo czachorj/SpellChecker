@@ -206,6 +206,7 @@ public class WordRecommender {
 		// step 1: filter based on word length +/0 tolerance characters
 		List<String> wordLengthFiltered = new ArrayList<String>();
 		List<String> commonPercentFiltered = new ArrayList<String>();
+		List<Double> filteredSimilarities = new ArrayList<Double>();
 		int wordLength = word.length();
 		int wordLengthLower = word.length()-tolerance;
 		int wordLengthUpper = word.length()+tolerance;
@@ -226,7 +227,13 @@ public class WordRecommender {
 				commonPercentFiltered.add(engDict.get(e));
 			}
 		}
-		System.out.println(commonPercentFiltered.size());	
+		System.out.println(commonPercentFiltered.size());
+				
+		// step 3: use similarity metric on every remaining word
+		for(int w=0; w<commonPercentFiltered.size(); w++) {
+			double simValue = getSimilarity(word, commonPercentFiltered.get(w));
+			filteredSimilarities.add(simValue);
+		}
 		
 		return engDict;
 	}
