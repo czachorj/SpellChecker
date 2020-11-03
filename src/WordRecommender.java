@@ -133,11 +133,77 @@ public class WordRecommender {
 
 	}
 	
+	
+	
+	public double getCommonPercent(String word1, String word2) {
+		
+		// S1 = the set of letters in w1 &&  S2 = the set of letters in w1
+		// w1 - committee. Then S1 = {c, o, m, i, t, e}
+		List<Character> S1 = new ArrayList<Character>();		
+		List<Character> S2 = new ArrayList<Character>();
+		List<Character> numerator = new ArrayList<Character>();		
+		List<Character> denominator = new ArrayList<Character>();
+
+		int word1LastIndex = word1.length();     // variable to track the looping through word1
+		int word2LastIndex = word2.length();     // variable to track the looping through word2
+
+		// add the very first letter of the word to S1
+		S1.add(word1.charAt(0));
+		for(int z=0; z<word1LastIndex; z++) {		  
+			if (S1.indexOf(word1.charAt(z)) == -1) {   // returns -1 if char does not exist in the set
+					S1.add(word1.charAt(z));		   // add char to list
+			}
+		}
+		
+		S2.add(word2.charAt(0));
+		for(int v=0; v<word2LastIndex; v++) {		  
+			if (S2.indexOf(word2.charAt(v)) == -1) {   // returns -1 if char does not exist in the set
+					S2.add(word2.charAt(v));		   // add char to list
+			}
+		}
+		
+		int s1length = S1.size();
+		int s2length = S2.size();
+		
+		// numerator = all the letters that are common in both sets
+		for(int a=0; a<s1length; a++) {
+			if(S2.contains(S1.get(a))) {
+				numerator.add(S1.get(a));
+			}
+		}
+		
+		// denominator = all the letters
+		for(int u=0; u<s1length; u++) {			// add all of the elements from S1 to the denominator
+			denominator.add(S1.get(u));
+		}
+		for(int d=0; d<s2length; d++) {
+			if(denominator.contains(S2.get(d))) {
+			} else {
+				denominator.add(S2.get(d));			// for each element that does not already exist in denominator, add to denominator
+			}
+		}
+		
+		double numSize = numerator.size();			
+		double denSize = denominator.size();
+		double fraction = numSize/denSize;
+		return fraction;
+	}
+	
+	
+	
 	/**
 	 * print out arraylist of suggested words
-	 * @param list
+	 * @param word, tolerance, commonPercent, topN
 	 * @return
 	 */
+	
+	
+	public ArrayList<String> getWordSuggestions(String word, int tolerance, double commonPercent, int topN) {
+		return engDict;
+	}
+	
+
+	
 
 	public String prettyPrint (ArrayList<String> list) {
 		for(int i =0; i<list.size(); i++) {
