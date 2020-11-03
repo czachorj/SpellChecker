@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class SpellCheckRunner {
 	public static void main(String[] args) {

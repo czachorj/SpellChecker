@@ -1,49 +1,52 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 import java.io.*;
 
 public class WordRecommender {
 
 	String fileName; //creating instance variable for dictionary
 	String textFileName; //creating instance variable for textFile
+
 	
-	WordRecommender(String fileName){
+	WordRecommender(String fileName, String textFileName){
 		this.fileName = fileName;
+		this.textFileName = textFileName;
 	}
 
 	ArrayList<String> engDict = new ArrayList<>();  //creating an arraylist for the dictionary words
 	ArrayList<String> testFile = new ArrayList<>();  //creating an arraylist for the paragraph to be tested 
 	ArrayList<String> typos = new ArrayList<>(); //creating typos arraylist
 
+	
 	// read from dictionary file
 	String[] readDict(){
-		File dictionary = new File (fileName);
+		File dictionary = new File(fileName);
 
 		try {
 			Scanner scnr = new Scanner(dictionary);
 			while (scnr.hasNext()) {
 				engDict.add(scnr.next());
 			}
+			// engDict contains the entire dictionary in an arraylist
 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
-
 	}
 
 
-	//read from test file to spellcheck
+	// read from test file to spellcheck
 	String[] readFile(){
-		File textFile = new File (textFileName);
+		File textFile = new File(textFileName);
 
 		try {
 			Scanner scnr = new Scanner(textFile);
 			while (scnr.hasNext()) {
 				testFile.add(scnr.next());
 			}
-
+		// testFile contains the entire user input file in an arraylist
+		
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -51,6 +54,7 @@ public class WordRecommender {
 		return null;
 
 	}
+	
 
 	//adding words that don't exist in the dictionary into the typos arraylist
 	ArrayList<String> getTypos () {
@@ -59,14 +63,16 @@ public class WordRecommender {
 				typos.add(testFile.get(i));
 			}
 		}
-
+		System.out.println(typos);
 		return typos;
 	}
 
+	
+	
 	public double getSimilarity (String word1, String word2) {
 
-		int leftSimilarity = 0; // number of letters that match between word1 and word two as we go from left to right
-		int rightSimilarity = 0; // number of letters that match between word1 and word two as we go from right to left
+		int leftSimilarity = 0; // number of letters that match between word1 and word2 as we go from left to right
+		int rightSimilarity = 0; // number of letters that match between word1 and word2 as we go from right to left
 		double similarity = 0; //similarity score we want returned
 
 
@@ -107,9 +113,11 @@ public class WordRecommender {
 			}
 		}
 		similarity = (leftSimilarity + rightSimilarity)/2.0; //calculating similarity score
+		System.out.println(similarity);
 		return similarity;
 
 	}
+	
 	/**
 	 * print out arraylist of suggested words
 	 * @param list
