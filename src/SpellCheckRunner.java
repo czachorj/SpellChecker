@@ -59,7 +59,6 @@ public static void main(String[] args) {
 				}
 			}
 		}
-		
 		try {
 			// try creating the spell checked file
 			PrintWriter pw = new PrintWriter(userFile + "_chk.txt");
