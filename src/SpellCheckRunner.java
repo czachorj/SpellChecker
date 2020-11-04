@@ -20,19 +20,19 @@ public static void main(String[] args) {
 		// loop for as many times as there are typos and get user corrections
 		for(int i=0; i<typoSize; i++) {
 			System.out.println("The word " + wr.getTypos().get(i) + " is mispelled");
-			System.out.println("The following suggestions are available:");
 			
 	// ************ TAS: BELOW IS WHERE YOU CAN CHANGE TOLERANCE, TOPN, and SIMILARITY
 	// ************ TAS: BELOW IS WHERE YOU CAN CHANGE TOLERANCE, TOPN, and SIMILARITY
 	// ************ TAS: BELOW IS WHERE YOU CAN CHANGE TOLERANCE, TOPN, and SIMILARITY
-			
-			wr.prettyPrint(wr.getWordSuggestions(wr.getTypos().get(i), 3, .5, 5));
-			
-			if (wr.prettyPrint(wr.getWordSuggestions(wr.getTypos().get(i), 3, .5, 5)) == null) {
-				System.out.print("no suggestions");
+						
+			if ((wr.getWordSuggestions(wr.getTypos().get(i), 3, .5, 5)).isEmpty()) {
+				System.out.println("There are 0 suggestions in our dictionary for this word.");
+				System.out.println("Press 'a' for accept as is or 't' for type in manually ");
+			} else {
+				System.out.println("The following suggestions are available:");
+				wr.prettyPrint(wr.getWordSuggestions(wr.getTypos().get(i), 3, .5, 5));
+				System.out.println("Press 'r' for replace, 'a' for accept as is, 't' for type in manually ");
 			}
-			
-			System.out.println("Press 'r' for replace, 'a' for accept as is, 't' for type in manually ");
 			Boolean invalidUserEntry = false;
 			
 			//as long as the user enters an invalid response, keep asking them. if it is valid response, execute.
