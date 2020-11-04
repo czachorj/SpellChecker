@@ -1,9 +1,10 @@
 import java.util.*;
 
 public class SpellCheckRunner {
-	public static void main(String[] args) {
+	
+	public static void main(String[] args)  {
 
-		WordRecommender test = new WordRecommender("filetotest.txt"); //testing word recommender
+		WordRecommender test = new WordRecommender("engDictionary.txt","filetotest.txt"); //testing word recommender
 		Scanner s = new Scanner(System.in);
 		String userInput;
 

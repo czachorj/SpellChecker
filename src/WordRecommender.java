@@ -63,7 +63,6 @@ public class WordRecommender {
 				typos.add(testFile.get(i));
 			}
 		}
-		System.out.println(typos);
 		return typos;
 	}
 
