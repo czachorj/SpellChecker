@@ -43,7 +43,12 @@ public static void main(String[] args) {
 					System.out.println("Enter the number corresponding to the word that you want to use for replacement");
 					int numSelected = s.nextInt();
 					int indexR = allNewWords.indexOf(wr.getTypos().get(i)); // find index of typo word
-					allNewWords.set(indexR, wr.getWordSuggestions(wr.getTypos().get(i), 3, .5, 5).get(numSelected-1)); // replace it with corrected word
+					try {
+						allNewWords.set(indexR, wr.getWordSuggestions(wr.getTypos().get(i), 3, .5, 5).get(numSelected-1)); // replace it with corrected word
+					} catch (Exception e) {
+						System.out.println("**INVALID: Enter the number corresponding to the word that you want to use for replacement");
+						numSelected = s.nextInt();
+					}
 					invalidUserEntry = true;
 				} else if(userInput == 't') { // if the user selects t, ask them to type in the word they want to use
 					System.out.println("Please type the word that will be used as the replacement in the output file");
