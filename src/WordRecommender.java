@@ -34,6 +34,7 @@ public class WordRecommender {
 		}
 		return null;
 	}
+	
 
 
 	// read from test file to spellcheck
@@ -48,7 +49,7 @@ public class WordRecommender {
 		// testFile contains the entire user input file in an arraylist
 		
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			System.out.println("invalid file name.");
 			e.printStackTrace();
 		}
 		return testFile;
