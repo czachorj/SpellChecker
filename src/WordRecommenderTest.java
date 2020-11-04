@@ -1,13 +1,16 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import org.junit.jupiter.api.Test;
 
 class WordRecommenderTest {
 
-//testing GetSimilarity
-	
+	//testing GetSimilarity
+
 	@Test
 	void testGetSimilarity() {
 
@@ -34,7 +37,7 @@ class WordRecommenderTest {
 	}
 
 
-//testing CommonPercent
+	//testing CommonPercent
 
 	@Test
 	void testGetCommonPercent() {
@@ -51,16 +54,30 @@ class WordRecommenderTest {
 		assertEquals(test5.getCommonPercent(word1, word2),0.42857142857142855);
 	}
 
+	//testing getWordSuggestions
+
+
+
 
 
 	@Test
 	void testGetWordSuggestions() {
-		WordRecommender test6 = new WordRecommender("filename6", "otherfile6");
+		WordRecommender test6 = new WordRecommender("filename4", "otherfile4");
+
 		String word = "bannna";
 		int tolerance = 3;
-		double commonPercent = 0.5;
+		double commonPercent = .5;
 		int topN = 5;
+		ArrayList<String> engDict = new ArrayList<>();  //creating an arraylist for the dictionary words
+		engDict.add("banana");
+		engDict.add("banned");
+		engDict.add("banner");
+		engDict.add("baaing");
+		engDict.add("baking");
+
 		ArrayList<String> answer = new ArrayList<String>();
+
+
 		answer.add("banana");
 		answer.add("banned");
 		answer.add("banner");
@@ -68,14 +85,81 @@ class WordRecommenderTest {
 		answer.add("baking");
 		assertEquals(test6.getWordSuggestions(word, tolerance, commonPercent, topN), answer);
 
-		
-		
+
+
+	}
+
+	@Test
+	void testGetWordSuggestions2() {
+		WordRecommender test6 = new WordRecommender("filename4", "otherfile4");
+
+		String word = "grat";
+		int tolerance = 3;
+		double commonPercent = .5;
+		int topN = 5;
+		ArrayList<String> engDict = new ArrayList<>();  //creating an arraylist for the dictionary words
+		engDict.add("brat");
+		engDict.add("drat");
+		engDict.add("gnat");
+		engDict.add("goat");
+		engDict.add("grab");
+
+		ArrayList<String> answer = new ArrayList<String>();
+
+
+		answer.add("brat");
+		answer.add("drat");
+		answer.add("gnat");
+		answer.add("goat");
+		answer.add("grab");
+		assertEquals(test6.getWordSuggestions(word, tolerance, commonPercent, topN), answer);
+
+
+
+	}
+	
+	
+	@Test
+	void testGetWordSuggestions3() {
+		WordRecommender test6 = new WordRecommender("filename4", "otherfile4");
+
+		String word = "sdlfkjxxxxxyoxyxyxyxx";
+		int tolerance = 3;
+		double commonPercent = .5;
+		int topN = 5;
+		ArrayList<String> engDict = new ArrayList<>();  //creating an arraylist for the dictionary words
+		engDict.add("pickle");
+		engDict.add("drat");
+		engDict.add("pencil");
+		engDict.add("goat");
+		engDict.add("potato");
+
+		ArrayList<String> answer = new ArrayList<String>();
+
+
+		assertEquals(test6.getWordSuggestions(word, tolerance, commonPercent, topN), answer);
+
+
+	}
+	
+	
+	//testing prettyPrint
+
+	@Test
+	void testPrettyPrint() {
+
+
+		WordRecommender test8 = new WordRecommender("filename8", "otherfile8");
+		ArrayList<String> answer = new ArrayList<String>();
+
+
+		answer.add("banana");
+		answer.add("banned");
+		answer.add("banner");
+		answer.add("baaing");
+		answer.add("baking");
+		assertEquals(test8.prettyPrint(answer),null);
+
+
 	}
 }
-//
-//	@Test
-//	void testPrettyPrint() {
-//		fail("Not yet implemented");
-//	}
-//
-//}
