@@ -37,7 +37,7 @@ public class WordRecommender {
 
 
 	// read from test file to spellcheck
-	String[] readFile(){
+	ArrayList<String> readFile(){
 		File textFile = new File(textFileName);
 
 		try {
@@ -51,7 +51,7 @@ public class WordRecommender {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return testFile;
 
 	}
 	
