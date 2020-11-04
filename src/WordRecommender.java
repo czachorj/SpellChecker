@@ -246,17 +246,15 @@ public class WordRecommender {
 				commonPercentFiltered.remove(maxIndex);	
 			}
 		}
-		System.out.println("**** " + getTopN);
 		return getTopN;
 	}
 
 
 	public String prettyPrint (ArrayList<String> list) {
-		for(int i =0; i<list.size(); i++) {
-			System.out.print(i+"."+list.get(i));
+		for(int i=0; i<list.size(); i++) {
+			System.out.println((i+1)+". "+list.get(i));
 		}
 		return null;
-
 	}
 
 

@@ -10,5 +10,6 @@ public class WordRecommenderTest {
 			wr.getSimilarity("morbit","morbid");
 			wr.getCommonPercent("morbit", "morbid");
 			wr.getWordSuggestions("morbit", 1, .5, 5);
+			wr.prettyPrint(wr.getWordSuggestions("morbit", 1, .5, 5));
 	}
 }
