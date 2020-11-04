@@ -35,17 +35,15 @@ public static void main(String[] args) {
 			}
 			Boolean invalidUserEntry = false;
 			
-			//as long as the user enters an invalid response, keep asking them. if it is valid response, execute.
+			//as long as the user enters an invalid response, keep asking them for another response. if it is valid response, execute.
 			while(!invalidUserEntry) {
 				char userInput = s.next().charAt(0);     //take the first character typed by user
-				
 				if(userInput == 'r') { // if the user selects r, ask them to input the number that they want to replace with
 					System.out.println("Your word will now be replaced with one of the suggestions");
 					System.out.println("Enter the number corresponding to the word that you want to use for replacement");
 					int numSelected = s.nextInt();
 					int indexR = allNewWords.indexOf(wr.getTypos().get(i)); // find index of typo word
-					// replace it with corrected word
-					allNewWords.set(indexR, wr.getWordSuggestions(wr.getTypos().get(i), 3, .5, 5).get(numSelected-1));
+					allNewWords.set(indexR, wr.getWordSuggestions(wr.getTypos().get(i), 3, .5, 5).get(numSelected-1)); // replace it with corrected word
 					invalidUserEntry = true;
 				} else if(userInput == 't') { // if the user selects t, ask them to type in the word they want to use
 					System.out.println("Please type the word that will be used as the replacement in the output file");
@@ -63,7 +61,7 @@ public static void main(String[] args) {
 		}
 		
 		try {
-			// try writing a list at once
+			// try creating the spell checked file
 			PrintWriter pw = new PrintWriter(userFile + "_chk.txt");
 	 		int fileSize = allNewWords.size();
 	 		

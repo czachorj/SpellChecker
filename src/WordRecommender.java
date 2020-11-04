@@ -4,18 +4,17 @@ import java.io.*;
 public class WordRecommender {
 
 	String fileName; //creating instance variable for dictionary
-	String textFileName; //creating instance variable for textFile
+	String textFileName; //creating instance variable for textFile to spell check
 
 	
 	WordRecommender(String fileName, String textFileName){
-		this.fileName = fileName;
-		this.textFileName = textFileName;
+		this.fileName = fileName;        
+		this.textFileName = textFileName; 
 	}
 
 	ArrayList<String> engDict = new ArrayList<>();  //creating an arraylist for the dictionary words
 	ArrayList<String> testFile = new ArrayList<>();  //creating an arraylist for the paragraph to be tested 
 	ArrayList<String> typos = new ArrayList<>(); //creating typos arraylist
-
 	
 	// read from dictionary file
 	String[] readDict(){
@@ -36,7 +35,6 @@ public class WordRecommender {
 	}
 	
 
-
 	// read from test file to spellcheck
 	ArrayList<String> readFile(){
 		File textFile = new File(textFileName);
@@ -47,13 +45,11 @@ public class WordRecommender {
 				testFile.add(scnr.next());
 			}
 		// testFile contains the entire user input file in an arraylist
-		
 		} catch (FileNotFoundException e) {
 			System.out.println("invalid file name.");
 			e.printStackTrace();
 		}
 		return testFile;
-
 	}
 	
 
@@ -94,8 +90,6 @@ public class WordRecommender {
 				--word2LastIndex;
 				--runningCounter1;
 			}
-			
-			
 		} else if(word2.length() < word1.length()) {
 			for(int j=0; j<word2.length(); j++) {
 				if (word2.charAt(j) == word1.charAt(j)) {
@@ -129,9 +123,7 @@ public class WordRecommender {
 		
 		similarity = (leftSimilarity + rightSimilarity)/2.0; //calculating similarity score
 		return similarity;
-
 	}
-	
 	
 	
 	public double getCommonPercent(String word1, String word2) {
@@ -186,13 +178,6 @@ public class WordRecommender {
 		double fraction = numSize/denSize;
 		return fraction;
 	}
-	
-	
-	/**
-	 * print out arraylist of suggested words
-	 * @param word, tolerance, commonPercent, topN
-	 * @return
-	 */
 	
 	
 	public ArrayList<String> getWordSuggestions(String word, int tolerance, double commonPercent, int topN) {
@@ -256,6 +241,4 @@ public class WordRecommender {
 		}
 		return null;
 	}
-
-
 }
