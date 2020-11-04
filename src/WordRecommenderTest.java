@@ -1,5 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 class WordRecommenderTest {
@@ -54,6 +56,19 @@ class WordRecommenderTest {
 	@Test
 	void testGetWordSuggestions() {
 		WordRecommender test6 = new WordRecommender("filename6", "otherfile6");
+		String word = "bannna";
+		int tolerance = 3;
+		double commonPercent = 0.5;
+		int topN = 5;
+		ArrayList<String> answer = new ArrayList<String>();
+		answer.add("banana");
+		answer.add("banned");
+		answer.add("banner");
+		answer.add("baaing");
+		answer.add("baking");
+		assertEquals(test6.getWordSuggestions(word, tolerance, commonPercent, topN), answer);
+
+		
 		
 	}
 }
