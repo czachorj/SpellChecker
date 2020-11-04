@@ -25,7 +25,7 @@ public static void main(String[] args) {
 	// ************ TAS: BELOW IS WHERE YOU CAN CHANGE TOLERANCE, TOPN, and SIMILARITY
 	// ************ TAS: BELOW IS WHERE YOU CAN CHANGE TOLERANCE, TOPN, and SIMILARITY
 						
-			if ((wr.getWordSuggestions(wr.getTypos().get(i), 3, .5, 5)).isEmpty()) {
+			if ((wr.getWordSuggestions(wr.getTypos().get(i), 3, .5, 5)).isEmpty()) {    // if there are no suggestions
 				System.out.println("There are 0 suggestions in our dictionary for this word.");
 				System.out.println("Press 'a' for accept as is or 't' for type in manually ");
 			} else {
@@ -39,7 +39,6 @@ public static void main(String[] args) {
 			while(!invalidUserEntry) {
 				char userInput = s.next().charAt(0);     //take the first character typed by user
 				
-				// TODO: if zero suggestions
 				if(userInput == 'r') { // if the user selects r, ask them to input the number that they want to replace with
 					System.out.println("Your word will now be replaced with one of the suggestions");
 					System.out.println("Enter the number corresponding to the word that you want to use for replacement");
