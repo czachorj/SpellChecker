@@ -128,7 +128,6 @@ public class WordRecommender {
 		}
 		
 		similarity = (leftSimilarity + rightSimilarity)/2.0; //calculating similarity score
-		System.out.println(similarity);
 		return similarity;
 
 	}
@@ -188,11 +187,6 @@ public class WordRecommender {
 		return fraction;
 	}
 	
-	// TODO: filter all the dictionary words into new array
-	// step 1: candidate word length is word length +/- tolerance characters
-	// step 2: array next only contains words with commonPercent in common
-	// step 3: use similarity metric on every remaining word
-	// step 4: return topN of the words (if there are fewer, return all)
 	
 	/**
 	 * print out arraylist of suggested words
@@ -207,6 +201,8 @@ public class WordRecommender {
 		List<String> wordLengthFiltered = new ArrayList<String>();
 		List<String> commonPercentFiltered = new ArrayList<String>();
 		List<Double> filteredSimilarities = new ArrayList<Double>();
+		ArrayList<String> getTopN = new ArrayList<String>();
+
 		int wordLength = word.length();
 		int wordLengthLower = word.length()-tolerance;
 		int wordLengthUpper = word.length()+tolerance;
@@ -218,28 +214,42 @@ public class WordRecommender {
 				wordLengthFiltered.add(engDict.get(f));
 			}
 		}
-		System.out.println(wordLengthFiltered.size());		
-
-		// step 2: next, filter so it only contains words with commonPercent in common
+		
+		// step 2: next, filter so it only contains words with commonPercent in common, add to commonPercentFiltered
 		for(int e=0; e<wordLengthFiltered.size(); e++) {
 			double commonPercentReturn = getCommonPercent(word, wordLengthFiltered.get(e));
 			if(commonPercentReturn >= commonPercent ) {
-				commonPercentFiltered.add(engDict.get(e));
+				commonPercentFiltered.add(wordLengthFiltered.get(e));
 			}
 		}
-		System.out.println(commonPercentFiltered.size());
-				
-		// step 3: use similarity metric on every remaining word
+						
+		// step 3: use similarity metric on every remaining word, store similarity values into arraylist
+		//   		-- indexing corresponds directly to commonPercentFiltered
 		for(int w=0; w<commonPercentFiltered.size(); w++) {
 			double simValue = getSimilarity(word, commonPercentFiltered.get(w));
 			filteredSimilarities.add(simValue);
 		}
 		
-		return engDict;
+		// step 4: return topN of the words (if there are fewer, return all)
+		for(int q=0; q<topN; q++) {
+			Double maxValue = 0.0;
+			int maxIndex = 0;
+			for(int y=0; y<filteredSimilarities.size(); y++) {
+				if (filteredSimilarities.get(y) > maxValue) {
+					maxValue = filteredSimilarities.get(y);
+					maxIndex = y;
+				}
+			}
+			if (maxValue > 0) {
+				getTopN.add(commonPercentFiltered.get(maxIndex));
+				filteredSimilarities.remove(maxIndex);
+				commonPercentFiltered.remove(maxIndex);	
+			}
+		}
+		System.out.println("**** " + getTopN);
+		return getTopN;
 	}
-	
 
-	
 
 	public String prettyPrint (ArrayList<String> list) {
 		for(int i =0; i<list.size(); i++) {
