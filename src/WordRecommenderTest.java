@@ -68,12 +68,12 @@ class WordRecommenderTest {
 		int tolerance = 3;
 		double commonPercent = .5;
 		int topN = 5;
-		ArrayList<String> engDict = new ArrayList<>();  //creating an arraylist for the dictionary words
-		engDict.add("banana");
-		engDict.add("banned");
-		engDict.add("banner");
-		engDict.add("baaing");
-		engDict.add("baking");
+		
+		test6.engDict.add("banana");
+		test6.engDict.add("banned");
+		test6.engDict.add("banner");
+		test6.engDict.add("baaing");
+		test6.engDict.add("baking");
 
 		ArrayList<String> answer = new ArrayList<String>();
 
@@ -97,12 +97,13 @@ class WordRecommenderTest {
 		int tolerance = 3;
 		double commonPercent = .5;
 		int topN = 5;
-		ArrayList<String> engDict = new ArrayList<>();  //creating an arraylist for the dictionary words
-		engDict.add("brat");
-		engDict.add("drat");
-		engDict.add("gnat");
-		engDict.add("goat");
-		engDict.add("grab");
+
+		test6.engDict.add("brat");
+		test6.engDict.add("drat");
+		test6.engDict.add("gnat");
+		test6.engDict.add("goat");
+		test6.engDict.add("grab");
+	
 
 		ArrayList<String> answer = new ArrayList<String>();
 
