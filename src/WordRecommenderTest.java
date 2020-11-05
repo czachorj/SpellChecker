@@ -68,7 +68,7 @@ class WordRecommenderTest {
 		int tolerance = 3;
 		double commonPercent = .5;
 		int topN = 5;
-		
+
 		test6.engDict.add("banana");
 		test6.engDict.add("banned");
 		test6.engDict.add("banner");
@@ -91,19 +91,19 @@ class WordRecommenderTest {
 
 	@Test
 	void testGetWordSuggestions2() {
-		WordRecommender test6 = new WordRecommender("filename4", "otherfile4");
+		WordRecommender test7 = new WordRecommender("filename4", "otherfile4");
 
 		String word = "grat";
 		int tolerance = 3;
 		double commonPercent = .5;
 		int topN = 5;
 
-		test6.engDict.add("brat");
-		test6.engDict.add("drat");
-		test6.engDict.add("gnat");
-		test6.engDict.add("goat");
-		test6.engDict.add("grab");
-	
+		test7.engDict.add("brat");
+		test7.engDict.add("drat");
+		test7.engDict.add("gnat");
+		test7.engDict.add("goat");
+		test7.engDict.add("grab");
+
 
 		ArrayList<String> answer = new ArrayList<String>();
 
@@ -113,16 +113,16 @@ class WordRecommenderTest {
 		answer.add("gnat");
 		answer.add("goat");
 		answer.add("grab");
-		assertEquals(test6.getWordSuggestions(word, tolerance, commonPercent, topN), answer);
+		assertEquals(test7.getWordSuggestions(word, tolerance, commonPercent, topN), answer);
 
 
 
 	}
-	
-	
+
+
 	@Test
 	void testGetWordSuggestions3() {
-		WordRecommender test6 = new WordRecommender("filename4", "otherfile4");
+		WordRecommender test8 = new WordRecommender("filename4", "otherfile4");
 
 		String word = "sdlfkjxxxxxyoxyxyxyxx";
 		int tolerance = 3;
@@ -138,19 +138,19 @@ class WordRecommenderTest {
 		ArrayList<String> answer = new ArrayList<String>();
 
 
-		assertEquals(test6.getWordSuggestions(word, tolerance, commonPercent, topN), answer);
+		assertEquals(test8.getWordSuggestions(word, tolerance, commonPercent, topN), answer);
 
 
 	}
-	
-	
+
+
 	//testing prettyPrint
 
 	@Test
 	void testPrettyPrint() {
 
 
-		WordRecommender test8 = new WordRecommender("filename8", "otherfile8");
+		WordRecommender test9 = new WordRecommender("filename8", "otherfile8");
 		ArrayList<String> answer = new ArrayList<String>();
 
 
@@ -159,7 +159,48 @@ class WordRecommenderTest {
 		answer.add("banner");
 		answer.add("baaing");
 		answer.add("baking");
-		assertEquals(test8.prettyPrint(answer),null);
+		assertEquals(test9.prettyPrint(answer),null);
+
+
+
+		//testing read dict
+
+	}
+	@Test
+	void testReadDict() {
+		WordRecommender test10 = new WordRecommender("miniDict.txt", "otherfile8");
+
+		assertEquals(test10.readDict(),null);
+
+
+
+	}
+	
+	
+	
+
+
+
+	//testing read file
+	@Test
+	void testReadFile() {
+		WordRecommender test11 = new WordRecommender("filename", "miniFile.txt");
+
+		assertEquals(test11.readFile(),test11.testFile);
+	}
+	
+
+
+
+
+	
+//testing getTypos
+	@Test
+	void testgetTypos() {
+		WordRecommender test12 = new WordRecommender("miniDict.txt", "miniFile.txt");
+
+		assertEquals(test12.getTypos(),test12.typos);
+
 
 
 	}
